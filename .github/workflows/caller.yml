@@ -1,0 +1,10 @@
+name: Greeting Caller
+on:
+  workflow_dispatch:
+
+jobs:
+  Greetme:
+    uses: kumar-b-pearson/PISO-poc/.github/workflows/called.yaml@main
+    with:
+        name: BKOB
+        

@@ -22,7 +22,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: bkob
-          path: bkob.tar
+          path: /tmp/bkob.tar
                   
   twistlock-scan:
     runs-on: ubuntu-latest
@@ -32,7 +32,6 @@ jobs:
         uses: actions/download-artifact@v3
         with: 
           name: bkob
-          path: bkob.tar
           
       - name: checking files
         run: ls -la

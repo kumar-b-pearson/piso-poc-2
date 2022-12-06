@@ -38,7 +38,7 @@ jobs:
       
       - name: Importing the Docker Image
         run: |
-          docker load -i bkob
+          docker load -i bkob.tar
           docker images | grep bkob
       
       - name: PISO Twistlock Scan

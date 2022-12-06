@@ -18,8 +18,8 @@ jobs:
         
       - name: Twistlock Scan
         uses: actions/PISO-poc@v1
-        with: |
-          twistlock_url : ${{ PCC_CONSOLE_URL }}
+        with:
+          twistlock_url : ${{ secrets.PCC_CONSOLE_URL }}
           twistlock_username: ${{ secrets.PCC_USER }}
-          twistlock_password : ${{ PCC_PASS }}
+          twistlock_password : ${{ secrets.PCC_PASS }}
           image_name : bkob

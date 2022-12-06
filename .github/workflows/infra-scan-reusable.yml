@@ -35,7 +35,7 @@ jobs:
           path: bkob.tar
           
       - name: checking files
-        run: ls- la
+        run: ls -la
       
       - name: Importing the Docker Image
         run: |

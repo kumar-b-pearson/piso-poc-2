@@ -17,7 +17,7 @@ jobs:
         run: docker build -t bkob .
         
       - name: Twistlock Scan
-        uses: actions/piso-poc@v1
+        uses: kumar-b-pearson/piso-poc@v1
         with:
           twistlock_url : ${{ secrets.PCC_CONSOLE_URL }}
           twistlock_username: ${{ secrets.PCC_USER }}

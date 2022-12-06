@@ -34,6 +34,9 @@ jobs:
           name: bkob
           path: bkob.tar
       
+      - name: Importing the Docker Image
+        run: docker load < bkob.tar
+      
       - name: PISO Twistlock Scan
         id: scan
         uses: PaloAltoNetworks/prisma-cloud-scan@v1
@@ -41,7 +44,7 @@ jobs:
           pcc_console_url: ${{ secrets.PCC_CONSOLE_URL }}
           pcc_user: ${{ secrets.PCC_USER }}
           pcc_pass: ${{ secrets.PCC_PASS }}
-          image_name: bkob.tar
+          image_name: bkob
 
 #      - name: Download twistlock cli
 #        run: |

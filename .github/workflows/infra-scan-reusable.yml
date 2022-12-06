@@ -17,25 +17,28 @@ jobs:
         run: |
           docker build -t bkob .
           docker save -o bkob.tar bkob
-          
-      - name: twistlock scan
-        run: |
-          curl -s -k -L -u ${{secrets.PCC_USER}}:${{secrets.PCC_PASS}} https://gps-twistlock.ift.pearsondev.tech/api/v1/util/twistcli > twistcli && chmod 0755 twistcli
-          ./twistcli image scan -u ${{secrets.PCC_USER}} -p ${{secrets.PCC_PASS}} --address ${{secrets.PCC_CONSOLE_URL}} --details --output-file twistcli.log --ci bkob 
-        
- #     - name: Upload artifact
- #       uses: actions/upload-artifact@v2
- #       with:
- #         name: bkob
- #         path: bkob.tar
-          
-#  twistlock-scan:
-#    runs-on: ubuntu-latest
-#    needs: build              
-#    steps:
-#      - name: Downloading image
-#        uses: actions/download-artifact@v2
-    
+                
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: bkob
+          path: bkob.tar
+                  
+  twistlock-scan:
+    runs-on: ubuntu-latest
+    needs: build              
+    steps:
+      - name: Downloading image
+        uses: actions/download-artifact@v3
+        with: 
+          name: bkob
+          path: bkob.tar
+      
+      - name: Check file contents
+        run: ls -R
+
+
+
 #      - name: Download twistlock cli
 #        run: |
 #          curl -s -k -L -u ${{secrets.PCC_USER}}:${{secrets.PCC_PASS}} https://gps-twistlock.ift.pearsondev.tech/api/v1/util/twistcli > twistcli && chmod 0755 twistcli

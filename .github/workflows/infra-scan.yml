@@ -1,0 +1,31 @@
+name: Infra Scan
+
+on:
+  workflow_dispatch:
+  
+jobs:
+
+  build-and-upload:
+    
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v2
+      
+      - name: Build the image
+        run: |
+          docker build -t bkob .
+          docker save -o bkob.tar bkob
+        
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: bkob
+          path: bkob.tar
+          
+  twistlock-scan:
+    needs: build-and-upload
+    uses: kumar-b-pearson/PISO-poc/.github/workflows/twistlock-scan.yml@main
+    with:
+      image_name: bkob

@@ -27,5 +27,3 @@ jobs:
   twistlock-scan:
     needs: build-and-upload
     uses: kumar-b-pearson/PISO-poc/.github/workflows/twistlock-scan.yml@main
-    with:
-      image_name: bkob

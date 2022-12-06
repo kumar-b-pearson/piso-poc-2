@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@v2
         
       - name: Build and export
-      - run: |
+        run: |
           docker build -t bkob .
           docker save -o bkob.tar bkob
         

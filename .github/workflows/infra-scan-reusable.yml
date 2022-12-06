@@ -34,4 +34,4 @@ jobs:
       - name: Download twistlock cli
         run: |
           curl -s -k -L -u ${{secrets.PCC_USER}}:${{secrets.PCC_PASS}} https://gps-twistlock.ift.pearsondev.tech/api/v1/util/twistcli > twistcli && chmod 0755 twistcli
-          ./twistcli images scan -u ${{secrets.PCC_USER}} -p ${{secrets.PCC_PASS}} --address ${{secrets.PCC_CONSOLE_URL}} --details --output-file twistcli.log --tarball bkob.tar 
+          ./twistcli images scan -u ${{secrets.PCC_USER}} -p ${{secrets.PCC_PASS}} --address ${{secrets.PCC_CONSOLE_URL}} --details --output-file twistcli.log -t bkob 

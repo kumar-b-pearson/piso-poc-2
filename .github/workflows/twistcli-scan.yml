@@ -1,4 +1,4 @@
-name: Infra Scan
+name: Twistcli Scan
 
 on:
   workflow_dispatch:

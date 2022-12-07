@@ -1,0 +1,25 @@
+name: Infra Scan
+
+on:
+  workflow_dispatch:
+  
+jobs:
+
+  build-and-scan:
+    
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v2
+      
+      - name: Build the image
+        run: docker build -t bkob .
+      
+      - name: Check the files 
+        run: ls -la
+        
+      - name: Download and scan twistcli
+        run: |
+          curl -s -k -L -u ${{secrets.PCC_USER}}:${{secrets.PCC_PASS}} ${{ secrets.PCC_CONSOLE_URL }}/api/v1/util/twistcli > twistcli && chmod 0755 twistcli
+          ./twistcli images scan -u ${{secrets.PCC_USER}} -p ${{secrets.PCC_PASS}} --address ${{ secrets.PCC_CONSOLE_URL }} --details --outputfile ./twistcli.log --ci bkob
